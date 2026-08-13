@@ -1,0 +1,9 @@
+/* ===== See More Blogs (All Blogs) Page Styling ===== */
+#blog > h2 {
+    margin-bottom: 3rem;
+}
+
+#blog .blog__container {
+    padding-bottom: 2rem;
+}
+

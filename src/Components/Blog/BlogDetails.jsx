@@ -1,0 +1,150 @@
+'use client';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { CgArrowLeft } from 'react-icons/cg';
+import { FaCalendarAlt, FaClock, FaTag } from 'react-icons/fa';
+import { HashLoader } from 'react-spinners';
+import { useTranslation } from 'react-i18next';
+import { allBlogs } from './BlogData';
+import './blogDetails.css';
+
+const BlogDetails = () => {
+    const { id } = useParams();
+    const { t } = useTranslation();
+    const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const item = allBlogs.find((item) => item.id === parseInt(id));
+        window.scrollTo(0, 0);
+        if (item) {
+            setItem(item);
+        }
+    }, [id]);
+
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, []);
+
+    return (
+        <>
+            {item ? (
+                <>
+                    {loading ? (
+                        <div className="blog__loading">
+                            <HashLoader
+                                color="#7EC834"
+                                loading={loading}
+                                className="override"
+                                size={100}
+                            />
+                        </div>
+                    ) : (
+                        <>
+                            <section id="blog__view">
+                                <div className="container blog__container__details">
+                                    <Link href="/blogs" className="blog__back-btn">
+                                        <CgArrowLeft />
+                                        <span>Back to Blogs</span>
+                                    </Link>
+
+                                    <div className="blog__hero">
+                                        <div className="blog__hero__image">
+                                            {item.image ? (
+                                                <img
+                                                    data-aos="zoom-in-up"
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                />
+                                            ) : item.video ? (
+                                                <div
+                                                    data-aos="zoom-in-up"
+                                                    dangerouslySetInnerHTML={{ __html: item.video }}
+                                                    className="blog__hero__video"
+                                                />
+                                            ) : null}
+                                            <div className="blog__hero__overlay" />
+                                            {item.tag && (
+                                                <span className="blog__hero__tag">
+                                                    <FaTag />
+                                                    {item.tag}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="blog__content">
+                                        <h2 className="blog__details__title">{item.title}</h2>
+
+                                        <div className="blog__meta">
+                                            <div className="blog__meta__item">
+                                                <div className="blog__meta__avatar">
+                                                    <span>
+                                                        {item.author
+                                                            .split(" ")
+                                                            .map((word) => word[0])
+                                                            .slice(0, 2)
+                                                            .join("")
+                                                            .toUpperCase()}
+                                                    </span>
+                                                </div>
+                                                <div className="blog__meta__info">
+                                                    <small>{t('blog_details.author')}</small>
+                                                    <strong>{item.author}</strong>
+                                                </div>
+                                            </div>
+
+                                            <div className="blog__meta__divider" />
+
+                                            <div className="blog__meta__item">
+                                                <div className="blog__meta__icon">
+                                                    <FaCalendarAlt />
+                                                </div>
+                                                <div className="blog__meta__info">
+                                                    <small>{t('blog_details.publish_date')}</small>
+                                                    <strong>{item.date}</strong>
+                                                </div>
+                                            </div>
+
+                                            {item.readTime && (
+                                                <>
+                                                    <div className="blog__meta__divider" />
+                                                    <div className="blog__meta__item">
+                                                        <div className="blog__meta__icon">
+                                                            <FaClock />
+                                                        </div>
+                                                        <div className="blog__meta__info">
+                                                            <small>Read Time</small>
+                                                            <strong>{item.readTime}</strong>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+
+                                        <div className="blog__article">
+                                            <p dangerouslySetInnerHTML={{ __html: item.desc }}></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </>
+                    )}
+                </>
+            ) : (
+                <div className="blog__not-found">
+                    <h1>{t('blog_details.not_found')}</h1>
+                    <Link href="/blogs" className="blog__back-btn">
+                        <CgArrowLeft />
+                        <span>Back to Blogs</span>
+                    </Link>
+                </div>
+            )}
+        </>
+    );
+};
+export default BlogDetails;

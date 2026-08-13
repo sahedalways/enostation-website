@@ -1,0 +1,214 @@
+.tech-card {
+  height: 100%;
+}
+
+/* Category Filter Tabs */
+.tech-category-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.tech-category-tabs-track {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tech-category-tab {
+  padding: 0.6rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-light);
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.3px;
+}
+
+.tech-category-tab:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-variant);
+}
+
+.tech-category-tab.active {
+  background: var(--color-primary);
+  color: #0b0f19;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary-glow);
+  font-weight: 700;
+}
+
+.tech-category-tab:active {
+  transform: scale(0.97);
+}
+
+.tech-category-tab:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Tech Stack Grid */
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+/* Tech Card */
+.tech-card {
+  padding: 1.4rem 1.3rem;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+
+.tech-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--tech-color, var(--color-primary)), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tech-card:hover::before {
+  opacity: 1;
+}
+
+.tech-card:hover {
+  border-color: var(--color-border-glow);
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(126, 200, 52, 0.1),
+    inset 0 0 30px rgba(126, 200, 52, 0.03);
+}
+
+/* Card Header */
+.tech-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.tech-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  color: var(--tech-color, var(--color-primary));
+  background: rgba(126, 200, 52, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.tech-card:hover .tech-icon-wrap {
+  background: rgba(126, 200, 52, 0.15);
+  border-color: rgba(126, 200, 52, 0.2);
+  box-shadow: 0 0 15px rgba(126, 200, 52, 0.15);
+  transform: scale(1.08);
+}
+
+.tech-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.tech-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tech-category-label {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 1200px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .tech-category-tabs {
+    gap: 0.5rem;
+  }
+  .tech-category-tab {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+  .tech-category-tabs {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tech-category-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .tech-category-tabs-track {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: max-content;
+  }
+  .tech-category-tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tech-card {
+    padding: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-card,
+  .tech-card::before,
+  .tech-icon-wrap,
+  .tech-category-tab {
+    transition: none;
+  }
+  .tech-card:hover {
+    transform: none;
+  }
+  .tech-card:hover .tech-icon-wrap {
+    transform: none;
+  }
+}

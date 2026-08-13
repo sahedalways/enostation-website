@@ -1,0 +1,93 @@
+/* ===== See More (All Projects) Page Styling ===== */
+.project__category__title {
+    margin: 4rem 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-white);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.project__category__title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+}
+
+.portfolio__item__image {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.portfolio__item__image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio__item:hover .portfolio__item__image img {
+    transform: scale(1.06);
+}
+
+.portfolio__item__image h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem 0.8rem;
+    background: linear-gradient(180deg, transparent, rgba(7, 9, 14, 0.9));
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    z-index: 1;
+}
+
+.view__Details {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(15, 22, 36, 0.85);
+    border: 1px solid var(--color-border-glow);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+    transition: var(--transition);
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.view__Details:hover {
+    background: var(--color-primary);
+    color: #0b0f19;
+    box-shadow: 0 0 12px var(--color-primary-glow);
+}
+
+.portfolio__item .btn {
+    width: 100%;
+    margin-bottom: 0.6rem;
+}
+
+.portfolio__item .btn:last-child {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .project__category__title {
+        margin: 3rem 0 1.5rem;
+        font-size: 1.25rem;
+    }
+}

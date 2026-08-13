@@ -1,0 +1,210 @@
+/* Agency Navigation Header Styling */
+.agency-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.2rem 0;
+  transition: var(--transition);
+  background: rgba(5, 7, 12, 0.45);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.agency-header.scrolled {
+  padding: 0.75rem 0;
+  background: rgba(5, 7, 12, 0.94);
+  border-bottom: 1px solid var(--color-border-glow);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.agency-header-container {
+  width: var(--container-width-lg);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.agency-logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.agency-logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--color-border-glow);
+  box-shadow: 0 0 12px var(--color-primary-glow);
+  transition: var(--transition);
+}
+
+.agency-logo-brand:hover .agency-logo-img {
+  transform: scale(1.05) rotate(-3deg);
+  box-shadow: 0 0 20px var(--color-primary-glow);
+}
+
+.agency-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.agency-name {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  color: var(--color-white);
+  line-height: 1.1;
+  transition: var(--transition);
+}
+
+.agency-logo-brand:hover .agency-name {
+  color: var(--color-primary);
+}
+
+.agency-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-primary);
+}
+
+.agency-desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.agency-desktop-nav a {
+  color: var(--color-light);
+  font-weight: 600;
+  font-size: 0.92rem;
+  position: relative;
+  padding: 4px 0;
+  transition: var(--transition);
+}
+
+.agency-desktop-nav a:hover,
+.agency-desktop-nav a.active {
+  color: var(--color-primary);
+}
+
+.agency-desktop-nav a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 2px;
+  transition: var(--transition);
+  transform: translateX(-50%);
+}
+
+.agency-desktop-nav a:hover::before,
+.agency-desktop-nav a.active::before {
+  width: 100%;
+}
+
+.agency-desktop-nav a.active::after {
+  display: none;
+}
+
+.agency-desktop-nav a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.agency-header .header-cta-btn.btn {
+  padding: 0.42rem 0.8rem;
+  font-size: 0.74rem;
+  border-radius: 9999px;
+}
+
+.header-cta-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Floating Bottom Quick Nav for Mobile */
+.agency-mobile-floating-nav {
+  display: none;
+  position: fixed;
+  padding: 0.7rem 1.4rem;
+  bottom: 1.2rem;
+  width: max-content;
+  background: rgba(15, 22, 36, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 0 auto;
+  left: 50%;
+  z-index: 1000;
+  gap: 0.6rem;
+  transform: translateX(-50%);
+  border-radius: 3rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.agency-mobile-floating-nav a {
+  background: transparent;
+  padding: 0.6rem;
+  border-radius: 50%;
+  display: flex;
+  color: var(--color-light);
+  font-size: 1.1rem;
+  transition: var(--transition);
+}
+
+.agency-mobile-floating-nav a:hover {
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.agency-mobile-floating-nav a.active {
+  background: var(--color-primary);
+  color: #0b0f19;
+  box-shadow: 0 0 12px var(--color-primary-glow);
+}
+
+.agency-mobile-floating-nav a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 1024px) {
+  .agency-header-container {
+    width: var(--container-width-md);
+  }
+  .agency-desktop-nav {
+    gap: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .agency-desktop-nav {
+    display: none;
+  }
+  .agency-mobile-floating-nav {
+    display: flex;
+  }
+  .agency-header {
+    padding: 0.8rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agency-header,
+  .agency-logo-img,
+  .agency-name,
+  .agency-desktop-nav a,
+  .agency-mobile-floating-nav a {
+    transition: none;
+  }
+}

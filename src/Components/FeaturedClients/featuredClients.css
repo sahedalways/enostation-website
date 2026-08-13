@@ -1,0 +1,148 @@
+.featured-clients {
+    position: relative;
+    padding: 1rem 0 0;
+    /*background: var(--color-bg-variant);*/
+    overflow: hidden;
+}
+
+.featured-clients__eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.marquee-wrapper {
+    position: relative;
+}
+
+.marquee-base {
+    background: var(--color-primary);
+    height: 72px;
+    transform: rotate(1.5deg);
+    transform-origin: center;
+}
+
+.marquee-band {
+    background: linear-gradient(90deg, var(--color-bg), var(--color-bg-variant));
+    color: var(--color-white);
+    padding: 20px 0;
+    position: relative;
+    top: -72px;
+    transform: rotate(-1.5deg);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: featured-client-scroll 30s linear infinite;
+}
+
+.marquee-band:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-group {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 3.5rem;
+    padding: 0 1.5rem;
+}
+
+.client-logo {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+    font-size: clamp(0.9rem, 1.6vw, 1.3rem);
+    font-weight: 700;
+    color: var(--color-light);
+    letter-spacing: -0.02em;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.client-logo:hover {
+    opacity: 1;
+    color: var(--color-primary);
+}
+
+.client-logo--poplar {
+    font-size: clamp(1.15rem, 2.1vw, 1.7rem);
+    letter-spacing: 0.02em;
+    font-weight: 800;
+}
+
+.client-logo--reviewly {
+    font-family: Georgia, serif;
+    font-style: italic;
+}
+
+.client-logo--culturize {
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.client-logo--tailwind {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.client-logo--global {
+    font-size: clamp(0.75rem, 1.3vw, 1rem);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.client-logo--blackstone {
+    font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+    letter-spacing: 0.04em;
+}
+
+.client-logo--supercharged {
+    font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.client-logo--savvy {
+    font-size: clamp(0.9rem, 1.6vw, 1.25rem);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+@media screen and (max-width: 800px) {
+    .marquee-base {
+        height: 56px;
+    }
+
+    .marquee-band {
+        top: -56px;
+    }
+
+    .marquee-group {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .marquee-track {
+        animation-duration: 25s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
+    }
+}
+
+@keyframes featured-client-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}

@@ -1,0 +1,214 @@
+.services__container > *,
+.process__container > *,
+.about__pillars_grid > *,
+.tech-stack-grid > *,
+.portfolio__container > *,
+.pricing__container > * {
+  height: 100%;
+}
+
+.brochure-cta {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.services__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.service-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  height: 100%;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, rgba(126, 200, 52, 0.35), rgba(0, 210, 255, 0.2));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(126, 200, 52, 0.08), transparent 70%);
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.service-card:hover::after {
+  transform: scale(1.5);
+}
+
+.service-card:hover {
+  border-color: var(--color-border-glow);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 25px rgba(126, 200, 52, 0.1);
+}
+
+.service-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.service-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-primary-variant);
+  border: 1px solid var(--color-border-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  transition: var(--transition);
+}
+
+.service-card:hover .service-icon-wrapper {
+  background: var(--color-primary);
+  color: #0b0f19;
+  box-shadow: 0 0 20px var(--color-primary-glow);
+  transform: scale(1.08);
+}
+
+.service-badge-pill {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  color: var(--color-light);
+}
+
+.service-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.service-desc {
+  font-size: 0.92rem;
+  color: var(--color-light);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.service-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.service-features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--color-light);
+}
+
+.feature-check-icon {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.service-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  z-index: 1;
+}
+
+.service-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  transition: var(--transition);
+}
+
+.service-cta-link:hover {
+  color: var(--color-white);
+  transform: translateX(4px);
+}
+
+.service-cta-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 1024px) {
+  .services__container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .services__container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card::after,
+  .service-icon-wrapper,
+  .service-cta-link {
+    transition: none;
+  }
+  .service-card:hover {
+    transform: none;
+  }
+  .service-card:hover::after {
+    transform: none;
+  }
+}

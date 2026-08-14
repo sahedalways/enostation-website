@@ -34,9 +34,9 @@ const About = () => {
 
   return (
     <section id="about" className="section--alt">
-      <ScrollReveal className="about__section_heading">
+      <ScrollReveal direction="none" className="about__section_heading">
         <h5>Why Choose Us</h5>
-        <h2>Partner With Enostation Agency</h2>
+        <h2>Partner With Enostation</h2>
         <p className="section-subtitle">
           A dedicated team focused on delivering measurable results for your
           business.
@@ -47,7 +47,7 @@ const About = () => {
         <ScrollReveal direction="scale" className="about__visual">
           <div className="about__visual__image glass-card">
             <div className="about__visual__glow" aria-hidden="true" />
-            <img src={LOGO} alt="Enostation Digital Agency" />
+            <img src={LOGO} alt="Enostation " />
             <div className="about__visual__overlay">
               <p>Where Ideas Become Innovation</p>
             </div>

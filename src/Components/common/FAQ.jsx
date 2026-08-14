@@ -13,7 +13,7 @@ const FAQ = () => {
 
     return (
         <section id="faq" className="faq__section">
-            <ScrollReveal>
+            <ScrollReveal direction="none">
                 <h5>{t('faq.subtitle')}</h5>
                 <h2>{t('faq.title')}</h2>
                 <p className="section-subtitle">Quick answers to common questions about working with us.</p>

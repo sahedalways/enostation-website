@@ -22,7 +22,7 @@ const Process = () => {
 
     return (
         <section id="process" className="process__section section--alt">
-            <ScrollReveal>
+            <ScrollReveal direction="none">
                 <h5>How We Build</h5>
                 <h2>Our 5-Step Agency Workflow</h2>
                 <p className="section-subtitle">Every project moves through the same build track — no skipped steps, no guesswork.</p>

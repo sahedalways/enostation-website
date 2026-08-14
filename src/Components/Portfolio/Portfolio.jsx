@@ -9,7 +9,7 @@ import { FiExternalLink, FiGithub, FiArrowUpRight } from 'react-icons/fi';
 
 const AGENCY_CATEGORIES = [
     { id: 'all', label: 'All Projects' },
-    { id: 'webApp', label: 'Web Applications' },
+    { id: 'webApp', label: 'Web / Software' },
     { id: 'reactFullApp', label: 'SaaS Platforms' },
     { id: 'mernApp', label: 'AI & Full Stack' },
     { id: 'mobileApp', label: 'Mobile Apps' },
@@ -36,13 +36,13 @@ const Portfolio = () => {
 
     return (
         <section id="portfolio">
-            <ScrollReveal>
+            <ScrollReveal direction="none">
                 <h5>Case Studies & Client Work</h5>
                 <h2>Featured Client Projects</h2>
                 <p className="section-subtitle">Real results from real projects — see what we've built for businesses like yours.</p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.1}>
+            <ScrollReveal delay={0.1} direction="none">
                 <div className="portfolio-filter-tabs">
                     {AGENCY_CATEGORIES.map((cat) => (
                         <button

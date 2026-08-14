@@ -108,7 +108,7 @@ const Header = () => {
             <div className="visual-card-glass">
               <div className="visual-glow-ring" aria-hidden="true" />
               <div className="visual-brand-circle">
-                <img id="pic" src={LOGO} alt="Enostation Digital Agency" />
+                <img id="pic" src={LOGO} alt="Enostation " />
               </div>
               <div className="floating-badge badge-top-right">
                 <FiCpu className="badge-icon" />

@@ -59,7 +59,7 @@ const Experience = () => {
 
   return (
     <section id="experience" className="section--alt">
-      <ScrollReveal>
+      <ScrollReveal direction="none">
         <h5>Our Arsenal</h5>
         <h2>Technologies We Master</h2>
         <p className="section-subtitle">Full-stack expertise across frontend, backend, and cloud — built for performance and scale.</p>

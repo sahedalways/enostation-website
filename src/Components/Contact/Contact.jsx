@@ -100,7 +100,7 @@ const Contact = () => {
 
   return (
     <section id="contact">
-      <ScrollReveal>
+      <ScrollReveal direction="none">
         <h5>Let's Build Something Great</h5>
         <h2>Start Your Agency Project</h2>
         <p className="section-subtitle">
@@ -142,7 +142,7 @@ const Contact = () => {
           <article className="contact__option glass-card">
             <RiMessengerLine className="contact__option__icon" />
             <h4>Facebook Messenger</h4>
-            <h5>Enostation Agency</h5>
+            <h5>Enostation</h5>
             <a
               href="https://www.m.me/sahedstar"
               rel="noreferrer"

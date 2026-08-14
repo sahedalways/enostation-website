@@ -22,7 +22,7 @@ const Blog = () => {
 
   return (
     <section id="blog">
-      <ScrollReveal>
+      <ScrollReveal direction="none">
         <h5>{t('blog.subtitle')}</h5>
         <h2>{t('blog.title')}</h2>
         <p className="section-subtitle">Insights, tutorials, and updates from our development team.</p>
@@ -32,7 +32,7 @@ const Blog = () => {
         {blogs
           .slice()
           .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .slice(0, 6)
+          .slice(0, 3)
           .map(({ id, image, title, desc, author, date, tag, readTime }, index) => {
             const truncatedDesc =
               desc.length > 120 ? desc.slice(0, 120) + "..." : desc;

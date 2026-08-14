@@ -11,7 +11,7 @@ const LOGO = "/assets/enostation.jpeg";
 const Footer = () => {
   return (
     <>
-      <ScrollReveal>
+      <ScrollReveal direction="none">
         <section className="footer-cta-banner">
           <div className="container footer-cta-inner">
             <div className="footer-cta-text">
@@ -32,16 +32,13 @@ const Footer = () => {
         <div className="container agency-footer-container">
           <div className="footer-brand-col">
             <Link href="/" className="agency-footer-logo">
-              <img src={LOGO} alt="Enostation Digital Agency" />
+              <img src={LOGO} alt="Enostation " />
               <div className="agency-footer-title">
                 <span>ENOSTATION</span>
-                <small>DIGITAL AGENCY</small>
+                <small></small>
               </div>
             </Link>
-            <p className="footer-tagline">
-              Full-service software engineering & AI agency building scalable
-              digital products for global businesses.
-            </p>
+            <p className="footer-tagline">Where Ideas Become Innovation</p>
           </div>
 
           <div className="footer-links-col">

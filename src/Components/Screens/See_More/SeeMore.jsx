@@ -15,7 +15,8 @@ const SeeMore = () => {
 
     // Optional: Custom category title formatting
     const formatCategoryTitle = (category) => {
-        return t(`portfolio.filter.${category}`, { defaultValue: category });
+        const fallback = category === 'webApp' ? 'Web / Software' : category;
+        return t(`portfolio.filter.${category}`, { defaultValue: fallback });
     };
 
     if (isLoading) {

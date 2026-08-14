@@ -1,4 +1,12 @@
 /* ===== See More (All Projects) Page Styling ===== */
+#portfolio > h2 {
+    margin-bottom: 6rem;
+}
+
+#portfolio > div:first-of-type .project__category__title {
+    margin-top: 0;
+}
+
 .project__category__title {
     margin: 4rem 0 2rem;
     font-size: 1.5rem;

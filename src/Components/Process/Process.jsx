@@ -1,11 +1,9 @@
-'use client';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { FiClipboard, FiLayout, FiCode, FiCheckCircle, FiTruck } from 'react-icons/fi';
 import ScrollReveal from '../common/ScrollReveal';
 import './Process.css';
 
-const DEFAULT_AGENCY_STEPS = [
+const AGENCY_STEPS = [
     { label: 'Stage 01', title: 'Discovery', description: 'We analyze your requirements, goals, and budget to plan the right solution.' },
     { label: 'Stage 02', title: 'Design', description: 'Wireframes and UI/UX design so you can see the product before development.' },
     { label: 'Stage 03', title: 'Development', description: 'Milestone-based coding with regular progress updates and transparency.' },
@@ -16,10 +14,6 @@ const DEFAULT_AGENCY_STEPS = [
 const ICONS = [FiClipboard, FiLayout, FiCode, FiCheckCircle, FiTruck];
 
 const Process = () => {
-    const { t } = useTranslation();
-    const translationSteps = t('process.steps', { returnObjects: true });
-    const steps = Array.isArray(translationSteps) && translationSteps.length > 0 ? translationSteps : DEFAULT_AGENCY_STEPS;
-
     return (
         <section id="process" className="process__section section--alt">
             <ScrollReveal direction="none">
@@ -29,7 +23,7 @@ const Process = () => {
             </ScrollReveal>
 
             <div className="container process__container">
-                {steps.map((step, index) => {
+                {AGENCY_STEPS.map((step, index) => {
                     const Icon = ICONS[index % ICONS.length];
                     return (
                         <ScrollReveal key={step.title} delay={index * 0.1}>
@@ -38,7 +32,7 @@ const Process = () => {
                                 <div className="process__icon">
                                     <Icon />
                                 </div>
-                                <div className="process__step-label">{step.label || `Stage 0${index + 1}`}</div>
+                                <div className="process__step-label">{step.label}</div>
                                 <h3>{step.title}</h3>
                                 <p>{step.description}</p>
                             </article>

@@ -1,8 +1,6 @@
-'use client';
 import React from 'react';
 import { FiCheck, FiZap, FiTarget, FiBriefcase } from 'react-icons/fi';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import FAQ from '../common/FAQ';
 import Process from '../Process/Process';
 import ScrollReveal from '../common/ScrollReveal';
@@ -64,9 +62,7 @@ const DEFAULT_AGENCY_PLANS = [
 ];
 
 const Pricing = () => {
-    const { t } = useTranslation();
-    const translationPlans = t('pricing.plans', { returnObjects: true });
-    const plans = Array.isArray(translationPlans) && translationPlans.length > 0 ? translationPlans : DEFAULT_AGENCY_PLANS;
+    const plans = DEFAULT_AGENCY_PLANS;
 
     return (
         <>

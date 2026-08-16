@@ -450,6 +450,45 @@ a:focus-visible {
   pointer-events: auto;
 }
 
+/* ScrollReveal (IntersectionObserver) */
+.scroll-reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.scroll-reveal.reveal-up {
+  transform: translateY(48px);
+}
+
+.scroll-reveal.reveal-down {
+  transform: translateY(-48px);
+}
+
+.scroll-reveal.reveal-left {
+  transform: translateX(-48px);
+}
+
+.scroll-reveal.reveal-right {
+  transform: translateX(48px);
+}
+
+.scroll-reveal.reveal-scale {
+  transform: scale(0.88) translateY(20px);
+}
+
+.scroll-reveal.reveal-none {
+  transform: none;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* Chat gate modal */
 .chat-gate-modal {
   position: fixed;

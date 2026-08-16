@@ -5,13 +5,11 @@ import { useParams } from 'next/navigation';
 import { CgArrowLeft } from 'react-icons/cg';
 import { FaCalendarAlt, FaClock, FaTag } from 'react-icons/fa';
 import { HashLoader } from 'react-spinners';
-import { useTranslation } from 'react-i18next';
 import { allBlogs } from './BlogData';
 import './blogDetails.css';
 
 const BlogDetails = () => {
     const { id } = useParams();
-    const { t } = useTranslation();
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -93,7 +91,7 @@ const BlogDetails = () => {
                                                     </span>
                                                 </div>
                                                 <div className="blog__meta__info">
-                                                    <small>{t('blog_details.author')}</small>
+                                                    <small>Author</small>
                                                     <strong>{item.author}</strong>
                                                 </div>
                                             </div>
@@ -105,7 +103,7 @@ const BlogDetails = () => {
                                                     <FaCalendarAlt />
                                                 </div>
                                                 <div className="blog__meta__info">
-                                                    <small>{t('blog_details.publish_date')}</small>
+                                                    <small>Publish Date</small>
                                                     <strong>{item.date}</strong>
                                                 </div>
                                             </div>
@@ -137,7 +135,7 @@ const BlogDetails = () => {
                 </>
             ) : (
                 <div className="blog__not-found">
-                    <h1>{t('blog_details.not_found')}</h1>
+                    <h1>Item not found!</h1>
                     <Link href="/blogs" className="blog__back-btn">
                         <CgArrowLeft />
                         <span>Back to Blogs</span>

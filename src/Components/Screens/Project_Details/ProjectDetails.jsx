@@ -4,17 +4,38 @@ import { BsFileCodeFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { useParams } from 'next/navigation';
 import { HashLoader } from 'react-spinners';
-import { useTranslation } from 'react-i18next';
 
 import './ProjectDetails.css';
 import { usePortfolioProject } from '../../../hooks/usePortfolioProject';
 
+const PROCESS_STEPS = [
+    {
+        title: 'Discovery',
+        description: 'We analyze your requirements, goals and budget to plan the right solution.'
+    },
+    {
+        title: 'Design',
+        description: 'Wireframes and UI/UX design so you can see the product before development.'
+    },
+    {
+        title: 'Development',
+        description: 'Milestone-based coding with regular progress updates and transparency.'
+    },
+    {
+        title: 'Testing & QA',
+        description: 'Thorough testing for bugs, performance and cross-device compatibility.'
+    },
+    {
+        title: 'Delivery & Support',
+        description: 'Deployment, handover with documentation, and ongoing support.'
+    }
+];
+
 const ProjectDetails = () => {
     const { id } = useParams();
     const descRef = useRef(null);
-    const { t } = useTranslation();
 
-    const processSteps = t('process.steps', { returnObjects: true });
+    const processSteps = PROCESS_STEPS;
 
     const { data: projects = [], isLoading } = usePortfolioProject();
 
@@ -56,7 +77,7 @@ const ProjectDetails = () => {
                                     </div>
 
                                     <div className="project__content">
-                                        <h5 className="project__subtitle">{t('project_details.subtitle')}</h5>
+                                        <h5 className="project__subtitle">Name of the project</h5>
                                         <h2 className="project__title">{item.title}</h2>
 
                                         <div className="project__cards">
@@ -65,13 +86,13 @@ const ProjectDetails = () => {
                                                 className="project__card"
                                             >
                                                 <CgProfile className="project__icon" />
-                                                <h5>{t('project_details.author')}</h5>
+                                                <h5>Author Name</h5>
                                                 <small>{item.authorName}</small>
                                             </article>
 
                                             <article data-aos="fade-left" className="project__card">
                                                 <BsFileCodeFill className="project__icon" />
-                                                <h5>{t('project_details.technologies')}</h5>
+                                                <h5>Used Technologies</h5>
                                                 <small>{item.use}</small>
                                             </article>
                                         </div>
@@ -85,7 +106,7 @@ const ProjectDetails = () => {
                                                 rel="noreferrer"
                                                 target="_blank"
                                             >
-                                                {t('project_details.github')}
+                                                Github
                                             </a>
                                             <a
                                                 href={item.demo}
@@ -93,7 +114,7 @@ const ProjectDetails = () => {
                                                 rel="noreferrer"
                                                 target="_blank"
                                             >
-                                                {t('project_details.live_demo')}
+                                                Live Demo
                                             </a>
                                         </div>
                                     </div>
@@ -104,8 +125,8 @@ const ProjectDetails = () => {
                                 CASE STUDY / DELIVERY PROCESS
                             ========================= */}
                             <section id="case-study" className="case-study">
-                                <h5>{t('case_study.subtitle')}</h5>
-                                <h2>{t('case_study.title')}</h2>
+                                <h5>A behind-the-scenes look at how this project was built.</h5>
+                                <h2>Project Delivery Process</h2>
 
                                 <div className="container case-study__container">
                                     {processSteps.map((step, index) => (
@@ -123,7 +144,7 @@ const ProjectDetails = () => {
                     )}
                 </>
             ) : (
-                <h1>{t('project_details.not_found')}</h1>
+                <h1>Item not found!</h1>
             )}
         </>
     );

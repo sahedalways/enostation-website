@@ -1,8 +1,7 @@
-"use client";
-import React from "react";
 import { BsLightningChargeFill, BsShieldCheck } from "react-icons/bs";
 import { FaCode, FaBrain } from "react-icons/fa";
 import "./about.css";
+import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "../common/ScrollReveal";
 
@@ -45,13 +44,19 @@ const About = () => {
 
       <div className="container about__container">
         <ScrollReveal direction="scale" className="about__visual">
-          <div className="about__visual__image glass-card">
-            <div className="about__visual__glow" aria-hidden="true" />
-            <img src={LOGO} alt="Enostation " />
-            <div className="about__visual__overlay">
-              <p>Where Ideas Become Innovation</p>
+            <div className="about__visual__image glass-card">
+              <div className="about__visual__glow" aria-hidden="true" />
+              <Image
+                src={LOGO}
+                alt="Enostation logo"
+                width={640}
+                height={320}
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+              <div className="about__visual__overlay">
+                <p>Where Ideas Become Innovation</p>
+              </div>
             </div>
-          </div>
         </ScrollReveal>
 
         <div className="about__content">

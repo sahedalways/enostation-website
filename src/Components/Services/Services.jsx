@@ -1,4 +1,3 @@
-'use client';
 import React from "react";
 import { BiCheck } from "react-icons/bi";
 import { FiLayout, FiServer, FiCpu, FiSmartphone, FiCloud, FiShield, FiArrowRight } from "react-icons/fi";

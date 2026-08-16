@@ -1,15 +1,12 @@
-'use client';
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { useTranslation } from 'react-i18next';
 import { FiArrowRight, FiClock, FiCalendar } from 'react-icons/fi';
 import { allBlogs } from "./BlogData";
 import ScrollReveal from "../common/ScrollReveal";
 import "./blog.css";
 
 const Blog = () => {
-  const [blogs] = useState(allBlogs);
-  const { t } = useTranslation();
+  const blogs = allBlogs;
 
   const getInitials = (name) => {
     return name
@@ -23,8 +20,8 @@ const Blog = () => {
   return (
     <section id="blog">
       <ScrollReveal direction="none">
-        <h5>{t('blog.subtitle')}</h5>
-        <h2>{t('blog.title')}</h2>
+        <h5>Recent Blogs</h5>
+        <h2>Blog</h2>
         <p className="section-subtitle">Insights, tutorials, and updates from our development team.</p>
       </ScrollReveal>
 
@@ -72,7 +69,11 @@ const Blog = () => {
                     />
 
                     <div className="blog__footer">
-                      <Link href={`/blog-details/${id}`} className="blog__read-more">
+                      <Link
+                        href={`/blog-details/${id}`}
+                        className="blog__read-more"
+                        aria-label={`Read more about ${title}`}
+                      >
                         Read More <FiArrowRight className="blog__arrow-icon" />
                       </Link>
                     </div>
@@ -86,7 +87,7 @@ const Blog = () => {
       <ScrollReveal delay={0.2}>
         <div className="seeMore__btn">
           <Link href="/blogs" className="btn" rel="noreferrer" target="_blank">
-            {t('blog.see_more')}
+            See More
           </Link>
         </div>
       </ScrollReveal>

@@ -1,7 +1,6 @@
-"use client";
-import React from "react";
 import { FaFacebookSquare, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FiArrowRight, FiMail } from "react-icons/fi";
+import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "../common/ScrollReveal";
 import "./footer.css";
@@ -32,7 +31,12 @@ const Footer = () => {
         <div className="container agency-footer-container">
           <div className="footer-brand-col">
             <Link href="/" className="agency-footer-logo">
-              <img src={LOGO} alt="Enostation " />
+              <Image
+                src={LOGO}
+                alt="Enostation logo"
+                width={44}
+                height={44}
+              />
               <div className="agency-footer-title">
                 <span>ENOSTATION</span>
                 <small></small>
@@ -131,9 +135,10 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Your email address"
+                  aria-label="Your email address"
                   className="newsletter-input"
                 />
-                <button type="button" className="newsletter-btn">
+                <button type="button" className="newsletter-btn" aria-label="Subscribe to newsletter">
                   <FiArrowRight />
                 </button>
               </div>

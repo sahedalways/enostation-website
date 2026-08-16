@@ -1,13 +1,13 @@
 'use client';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 const directionMap = {
-    up: { y: 48, x: 0 },
-    down: { y: -48, x: 0 },
-    left: { x: -48, y: 0 },
-    right: { x: 48, y: 0 },
-    scale: { scale: 0.88, y: 20 },
-    none: { x: 0, y: 0 },
+    up: 'reveal-up',
+    down: 'reveal-down',
+    left: 'reveal-left',
+    right: 'reveal-right',
+    scale: 'reveal-scale',
+    none: 'reveal-none',
 };
 
 const ScrollReveal = ({
@@ -15,28 +15,47 @@ const ScrollReveal = ({
     className = '',
     delay = 0,
     direction = 'up',
-    duration = 0.65,
-    as = 'div',
+    as: Tag = 'div',
     ...props
 }) => {
-    const Component = motion[as] || motion.div;
-    const offset = directionMap[direction] || directionMap.up;
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return undefined;
+
+        if (typeof IntersectionObserver === 'undefined') {
+            node.classList.add('is-visible');
+            return undefined;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    const dirClass = directionMap[direction] || directionMap.up;
 
     return (
-        <Component
-            className={`scroll-reveal ${className}`.trim()}
-            initial={{ opacity: 0, ...offset }}
-            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.15, margin: '-40px' }}
-            transition={{
-                duration,
-                delay,
-                ease: [0.22, 1, 0.36, 1],
-            }}
+        <Tag
+            ref={ref}
+            className={`scroll-reveal ${dirClass} ${className}`.trim()}
+            style={delay ? { '--reveal-delay': `${delay}s` } : undefined}
             {...props}
         >
             {children}
-        </Component>
+        </Tag>
     );
 };
 

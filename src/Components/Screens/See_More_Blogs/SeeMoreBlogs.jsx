@@ -1,15 +1,13 @@
 'use client';
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { useTranslation } from 'react-i18next';
 import { FiArrowRight, FiClock, FiCalendar } from 'react-icons/fi';
 import { allBlogs } from "../../Blog/BlogData";
 import "../../Blog/blog.css";
 import "./seeMoreBlogs.css";
 
 const SeeMoreBlogs = () => {
-  const [blogs] = useState(allBlogs);
-  const { t } = useTranslation();
+  const blogs = allBlogs;
 
   const getInitials = (name) => {
     return name
@@ -23,7 +21,7 @@ const SeeMoreBlogs = () => {
   return (
     <>
       <section id="blog">
-        <h2>{t('blog.all_blogs')}</h2>
+        <h2>All Blogs</h2>
 
         <div className="container blog__container">
           {blogs
@@ -67,7 +65,11 @@ const SeeMoreBlogs = () => {
                     />
 
                     <div className="blog__footer">
-                      <Link href={`/blog-details/${id}`} className="blog__read-more">
+                      <Link
+                        href={`/blog-details/${id}`}
+                        className="blog__read-more"
+                        aria-label={`Read more about ${title}`}
+                      >
                         Read More <FiArrowRight className="blog__arrow-icon" />
                       </Link>
                     </div>

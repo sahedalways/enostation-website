@@ -1,5 +1,3 @@
-'use client';
-import React from 'react';
 import { FiArrowRight, FiBriefcase } from 'react-icons/fi';
 import Link from 'next/link';
 import ScrollReveal from '../common/ScrollReveal';

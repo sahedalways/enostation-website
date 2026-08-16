@@ -331,6 +331,12 @@
 }
 
 /* ===== Responsive ===== */
+@media screen and (max-width: 991px) {
+    .agency-footer {
+        padding-bottom: 6.5rem;
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .footer-cta-inner {
         flex-direction: column;

@@ -1,13 +1,31 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { FaStar, FaTimes } from 'react-icons/fa';
-import { useTranslation } from 'react-i18next';
 import Modal from '../common/Modal';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const REVIEW_FORM = {
+    title: 'Submit Your Review',
+    subtitle: 'Share your experience working with us',
+    name: 'Enter your name...',
+    email: 'Enter your email...',
+    rating: 'Your Rating',
+    review: 'Write your review...',
+    submit: 'Submit Review',
+    sending: 'Submitting...',
+    modal_close: 'OK',
+    success: 'Thank you! Your review has been submitted.',
+    error: 'Sorry! Your review submission failed!',
+    errors: {
+        name: 'Name is required.',
+        email: 'Enter a valid email address.',
+        rating: 'Please select a rating.',
+        review: 'Review must be at least 5 characters.',
+    },
+};
+
 const ReviewModal = ({ open, onClose }) => {
-    const { t } = useTranslation();
     const [formValues, setFormValues] = useState({
         name: '',
         email: '',
@@ -37,15 +55,15 @@ const ReviewModal = ({ open, onClose }) => {
 
     const validate = () => {
         const newErrors = {};
-        if (!formValues.name.trim()) newErrors.name = t('review_form.errors.name');
+        if (!formValues.name.trim()) newErrors.name = REVIEW_FORM.errors.name;
         if (!formValues.email.trim()) {
-            newErrors.email = t('review_form.errors.email');
+            newErrors.email = REVIEW_FORM.errors.email;
         } else if (!EMAIL_PATTERN.test(formValues.email)) {
-            newErrors.email = t('review_form.errors.email');
+            newErrors.email = REVIEW_FORM.errors.email;
         }
-        if (!formValues.rating) newErrors.rating = t('review_form.errors.rating');
+        if (!formValues.rating) newErrors.rating = REVIEW_FORM.errors.rating;
         if (formValues.review.trim().length < 5) {
-            newErrors.review = t('review_form.errors.review');
+            newErrors.review = REVIEW_FORM.errors.review;
         }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -92,14 +110,14 @@ const ReviewModal = ({ open, onClose }) => {
                     <FaTimes />
                 </button>
 
-                <h3 className="review-modal__title">{t('review_form.title')}</h3>
-                <p className="review-modal__subtitle">{t('review_form.subtitle')}</p>
+                <h3 className="review-modal__title">{REVIEW_FORM.title}</h3>
+                <p className="review-modal__subtitle">{REVIEW_FORM.subtitle}</p>
 
                 <form onSubmit={handleSubmit} noValidate>
                     <input
                         type="text"
                         name="name"
-                        placeholder={t('review_form.name')}
+                        placeholder={REVIEW_FORM.name}
                         value={formValues.name}
                         onChange={handleChange}
                         className={errors.name ? 'form-error' : ''}
@@ -110,7 +128,7 @@ const ReviewModal = ({ open, onClose }) => {
                     <input
                         type="email"
                         name="email"
-                        placeholder={t('review_form.email')}
+                        placeholder={REVIEW_FORM.email}
                         value={formValues.email}
                         onChange={handleChange}
                         className={errors.email ? 'form-error' : ''}
@@ -120,7 +138,7 @@ const ReviewModal = ({ open, onClose }) => {
 
                     <div className="review-modal__rating">
                         <span className="review-modal__rating-label">
-                            {t('review_form.rating')}
+                            {REVIEW_FORM.rating}
                         </span>
                         <div className="review-modal__stars">
                             {[1, 2, 3, 4, 5].map((star) => (
@@ -152,7 +170,7 @@ const ReviewModal = ({ open, onClose }) => {
                         name="review"
                         rows="5"
                         cols="10"
-                        placeholder={t('review_form.review')}
+                        placeholder={REVIEW_FORM.review}
                         value={formValues.review}
                         onChange={handleChange}
                         className={errors.review ? 'form-error' : ''}
@@ -161,7 +179,7 @@ const ReviewModal = ({ open, onClose }) => {
                     {errors.review && <small className="form-error-msg">{errors.review}</small>}
 
                     <button type="submit" className="btn btn-primary" disabled={sending}>
-                        {sending ? t('review_form.sending') : t('review_form.submit')}
+                        {sending ? REVIEW_FORM.sending : REVIEW_FORM.submit}
                     </button>
                 </form>
 
@@ -169,9 +187,9 @@ const ReviewModal = ({ open, onClose }) => {
                     open={result !== null}
                     type={result === 'success' ? 'success' : 'error'}
                     message={
-                        result === 'success' ? t('review_form.success') : t('review_form.error')
+                        result === 'success' ? REVIEW_FORM.success : REVIEW_FORM.error
                     }
-                    closeLabel={t('review_form.modal_close')}
+                    closeLabel={REVIEW_FORM.modal_close}
                     onClose={() => {
                         setResult(null);
                         if (result === 'success') onClose();

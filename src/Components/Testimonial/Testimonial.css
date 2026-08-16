@@ -1,7 +1,6 @@
 #testimonials {
-    padding-top: 1rem;
+    padding: 4rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 #testimonials::before {
@@ -21,19 +20,23 @@
 .review-carousel {
     position: relative;
     z-index: 1;
-    width: var(--container-width-lg);
+    width: min(var(--container-width-lg), calc(100% - 4rem));
     margin: 0 auto;
-    padding: 0 0 0.75rem;
+    padding: 0 1rem 0.75rem;
 }
 
 .review-carousel__viewport {
     width: 100%;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
 }
 
 .review-carousel__stage {
     position: relative;
-    height: 360px;
+    height: auto;
+    min-height: 390px;
+    padding: 36px 0 34px;
+    overflow: visible;
 }
 
 .review-carousel__slide {
@@ -133,6 +136,8 @@
     text-align: center;
     transition: var(--transition);
     user-select: none;
+    position: relative;
+    z-index: 1;
 }
 
 .review-card:hover {
@@ -378,6 +383,15 @@
 }
 
 @media screen and (max-width: 1024px) {
+    #testimonials {
+        padding: 3rem 0;
+    }
+
+    .review-carousel__stage {
+        min-height: 384px;
+        padding: 30px 0 30px;
+    }
+
     .review-carousel__nav--prev {
         left: 0.5rem;
     }
@@ -394,7 +408,8 @@
     }
 
     .review-carousel__stage {
-        height: 375px;
+        min-height: 408px;
+        padding: 28px 0 28px;
     }
 
     .review-carousel__slide {
@@ -402,7 +417,8 @@
     }
 
     .review-carousel {
-        width: var(--container-width-sm);
+        width: min(var(--container-width-sm), calc(100% - 1rem));
+        padding-inline: 0.5rem;
     }
 
     .review-carousel__nav {

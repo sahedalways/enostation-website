@@ -129,7 +129,7 @@ const BlogDetails = () => {
                                         </div>
 
                                         <div className="blog__article">
-                                            <p dangerouslySetInnerHTML={{ __html: item.desc }}></p>
+                                            <div dangerouslySetInnerHTML={{ __html: item.desc }}></div>
                                         </div>
                                     </div>
                                 </div>

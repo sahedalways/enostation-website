@@ -60,7 +60,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={`${plusJakartaSans.variable} ${poppins.variable}`}>
+            <body className={`${plusJakartaSans.variable} ${poppins.variable}`} suppressHydrationWarning>
                 <Providers>
                     <AppShell>{children}</AppShell>
                 </Providers>

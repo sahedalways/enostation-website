@@ -68,7 +68,7 @@ const SeeMoreBlogs = () => {
                       </span>
                     </div>
 
-                    <p
+                    <div
                       className="blog__desc"
                       dangerouslySetInnerHTML={{ __html: truncatedDesc }}
                     />

@@ -613,7 +613,7 @@ img {
 /* Media Queries for MEDIUM DEVICES */
 @media screen and (max-width: 1024px) {
   :root {
-    --section-gap: 5rem;
+    --section-gap: 4rem;
   }
 
   .container {
@@ -622,6 +622,15 @@ img {
 
   section {
     margin-top: var(--section-gap);
+  }
+
+  /* Slightly tighten the top offset for standalone pages on tablets. */
+  #main-content > section:first-child {
+    padding-top: 7rem;
+  }
+
+  .section--alt {
+    padding: 3rem 0;
   }
 
   h1 {
@@ -636,7 +645,7 @@ img {
 /* Media Queries for SMALL DEVICES */
 @media screen and (max-width: 600px) {
   :root {
-    --section-gap: 4rem;
+    --section-gap: 2.5rem;
   }
 
   .container {
@@ -645,6 +654,16 @@ img {
 
   section {
     margin-top: var(--section-gap);
+  }
+
+  /* Tighten spacing on phones: smaller top offset for standalone
+     pages (opened via menu items) and smaller internal section padding. */
+  #main-content > section:first-child {
+    padding-top: 6rem;
+  }
+
+  .section--alt {
+    padding: 2.5rem 0;
   }
 
   section > h2 {

@@ -386,7 +386,7 @@
     .blog__meta {
         gap: 1rem;
         padding: 1rem;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .blog__meta__divider {
@@ -395,7 +395,7 @@
 
     .blog__meta__item {
         flex: 1 1 100%;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .blog__content {

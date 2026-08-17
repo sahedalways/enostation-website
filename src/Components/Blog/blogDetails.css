@@ -90,12 +90,10 @@
 .blog__hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(5, 7, 12, 0.05) 0%,
-        rgba(5, 7, 12, 0.1) 50%,
-        rgba(5, 7, 12, 0.6) 100%
-    );
+    background: linear-gradient(to bottom,
+            rgba(5, 7, 12, 0.05) 0%,
+            rgba(5, 7, 12, 0.1) 50%,
+            rgba(5, 7, 12, 0.6) 100%);
     pointer-events: none;
     z-index: 1;
 }
@@ -410,17 +408,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .blog__back-btn,
     .blog__back-btn svg,
     .blog__hero__image img {
         transition: none;
     }
+
     .blog__back-btn:hover {
         transform: none;
     }
+
     .blog__back-btn:hover svg {
         transform: none;
     }
+
     .blog__hero__image:hover img {
         transform: none;
     }

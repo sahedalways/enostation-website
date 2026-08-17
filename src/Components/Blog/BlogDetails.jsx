@@ -112,20 +112,7 @@ const BlogDetails = () => {
                                                 </div>
                                             </div>
 
-                                            {item.readTime && (
-                                                <>
-                                                    <div className="blog__meta__divider" />
-                                                    <div className="blog__meta__item">
-                                                        <div className="blog__meta__icon">
-                                                            <FaClock />
-                                                        </div>
-                                                        <div className="blog__meta__info">
-                                                            <small>Read Time</small>
-                                                            <strong>{item.readTime}</strong>
-                                                        </div>
-                                                    </div>
-                                                </>
-                                            )}
+
                                         </div>
 
                                         <div className="blog__article">

@@ -57,7 +57,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem; /* Offset for fixed header */
+  scroll-padding-top: 5rem;
+  /* Offset for fixed header */
 }
 
 html::-webkit-scrollbar {
@@ -129,15 +130,35 @@ body::after {
 }
 
 @keyframes floatOrb1 {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(60px, 40px); }
-  66% { transform: translate(-30px, 80px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(60px, 40px);
+  }
+
+  66% {
+    transform: translate(-30px, 80px);
+  }
 }
 
 @keyframes floatOrb2 {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(-50px, -30px); }
-  66% { transform: translate(40px, -60px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(-50px, -30px);
+  }
+
+  66% {
+    transform: translate(40px, -60px);
+  }
 }
 
 .container {
@@ -155,7 +176,7 @@ video {
   max-width: 100%;
 }
 
-section > .scroll-reveal {
+section>.scroll-reveal {
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -165,7 +186,7 @@ section > .scroll-reveal {
 
 /* Section headings are commonly wrapped by ScrollReveal. Keep the wrapper
    aligned with the section instead of allowing the heading to escape it. */
-section > .scroll-reveal > .section-eyebrow {
+section>.scroll-reveal>.section-eyebrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,19 +201,19 @@ section > .scroll-reveal > .section-eyebrow {
   position: relative;
 }
 
-section > .scroll-reveal > .section-eyebrow::before,
-section > .scroll-reveal > .section-eyebrow::after {
+section>.scroll-reveal>.section-eyebrow::before,
+section>.scroll-reveal>.section-eyebrow::after {
   content: "";
   width: 28px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-primary));
 }
 
-section > .scroll-reveal > .section-eyebrow::after {
+section>.scroll-reveal>.section-eyebrow::after {
   background: linear-gradient(90deg, var(--color-primary), transparent);
 }
 
-section > .scroll-reveal > h2 {
+section>.scroll-reveal>h2 {
   text-align: center;
   color: var(--color-white);
   margin-bottom: 1rem;
@@ -206,11 +227,16 @@ section > .scroll-reveal > h2 {
   line-height: 1.2;
 }
 
-section > .scroll-reveal > h2::after {
+section>.scroll-reveal>h2::after {
   display: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -234,9 +260,10 @@ section {
    Use padding-top instead of margin-top to clear the navbar!
    Margin pushes the background down (creating a black gap).
    Padding extends the background underneath the transparent navbar. */
-#main-content > section:first-child {
+#main-content>section:first-child {
   margin-top: 0;
-  padding-top: 9rem; /* 5rem for navbar + 4rem for normal section padding */
+  padding-top: 9rem;
+  /* 5rem for navbar + 4rem for normal section padding */
 }
 
 .section--alt {
@@ -245,7 +272,7 @@ section {
   background: radial-gradient(ellipse 70% 60% at 50% -10%, rgba(143, 215, 71, 0.07), transparent 60%), linear-gradient(180deg, #0d1119, #0a0d13);
 }
 
-section > .section-eyebrow {
+section>.section-eyebrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,19 +287,19 @@ section > .section-eyebrow {
   position: relative;
 }
 
-section > .section-eyebrow::before,
-section > .section-eyebrow::after {
+section>.section-eyebrow::before,
+section>.section-eyebrow::after {
   content: "";
   width: 28px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-primary));
 }
 
-section > .section-eyebrow::after {
+section>.section-eyebrow::after {
   background: linear-gradient(90deg, var(--color-primary), transparent);
 }
 
-section > h2 {
+section>h2 {
   text-align: center;
   color: var(--color-white);
   margin-bottom: 1rem;
@@ -284,17 +311,26 @@ section > h2 {
   line-height: 1.2;
 }
 
-section > h2::after {
+section>h2::after {
   display: none;
 }
 
-#not-found > h2 {
+#not-found>h2 {
   margin-bottom: 1rem;
 }
 
 @keyframes underlineShimmer {
-  0%, 100% { opacity: 1; width: 80px; }
-  50% { opacity: 0.7; width: 50px; }
+
+  0%,
+  100% {
+    opacity: 1;
+    width: 80px;
+  }
+
+  50% {
+    opacity: 0.7;
+    width: 50px;
+  }
 }
 
 .section-subtitle {
@@ -416,9 +452,20 @@ a:focus-visible {
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(126, 200, 52, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(126, 200, 52, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(126, 200, 52, 0); }
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(126, 200, 52, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(126, 200, 52, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(126, 200, 52, 0);
+  }
 }
 
 .gradient-text {
@@ -625,7 +672,7 @@ img {
   }
 
   /* Slightly tighten the top offset for standalone pages on tablets. */
-  #main-content > section:first-child {
+  #main-content>section:first-child {
     padding-top: 7rem;
   }
 
@@ -658,7 +705,7 @@ img {
 
   /* Tighten spacing on phones: smaller top offset for standalone
      pages (opened via menu items) and smaller internal section padding. */
-  #main-content > section:first-child {
+  #main-content>section:first-child {
     padding-top: 6rem;
   }
 
@@ -666,8 +713,18 @@ img {
     padding: 2.5rem 0;
   }
 
-  section > h2 {
-    margin-bottom: 1rem;
+  .section-subtitle {
+    margin-bottom: 3rem;
+  }
+
+  /* Give section-level ScrollReveal wrappers (e.g. headings) a side
+     gutter on small screens so content doesn't touch the edges. */
+  section > .scroll-reveal {
+    padding-inline: 1.25rem;
+  }
+
+  section>h2 {
+    margin-bottom: 1rem !important;
   }
 
   h1 {
@@ -714,6 +771,7 @@ img {
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

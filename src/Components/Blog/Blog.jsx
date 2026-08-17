@@ -18,6 +18,10 @@ const Blog = () => {
       .toUpperCase();
   };
 
+  // Strip HTML tags so the preview is always valid text (truncating raw
+  // HTML at a character boundary can split a tag and break hydration).
+  const toPlainText = (html) => (html || "").replace(/<[^>]*>/g, "");
+
   return (
     <section id="blog">
       <ScrollReveal direction="none">
@@ -32,8 +36,9 @@ const Blog = () => {
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 3)
           .map(({ id, image, title, desc, author, date, tag, readTime }, index) => {
+            const plainDesc = toPlainText(desc);
             const truncatedDesc =
-              desc && desc.length > 120 ? desc.slice(0, 120) + "..." : (desc || "");
+              plainDesc.length > 120 ? plainDesc.slice(0, 120) + "..." : plainDesc;
             return (
               <ScrollReveal key={id} delay={index * 0.08} direction="left">
                 <article className="blog__item">
@@ -72,10 +77,7 @@ const Blog = () => {
                       </span>
                     </div>
 
-                    <div
-                      className="blog__desc"
-                      dangerouslySetInnerHTML={{ __html: truncatedDesc }}
-                    />
+                    <div className="blog__desc">{truncatedDesc}</div>
 
                     <div className="blog__footer">
                       <Link

@@ -19,6 +19,10 @@ const SeeMoreBlogs = () => {
       .toUpperCase();
   };
 
+  // Strip HTML tags so the preview is always valid text (truncating raw
+  // HTML at a character boundary can split a tag and break hydration).
+  const toPlainText = (html) => (html || "").replace(/<[^>]*>/g, "");
+
   return (
     <>
       <section id="blog">
@@ -29,8 +33,9 @@ const SeeMoreBlogs = () => {
             .slice()
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map(({ id, image, title, desc, author, date, tag, readTime }) => {
+              const plainDesc = toPlainText(desc);
               const truncatedDesc =
-                desc.length > 120 ? desc.slice(0, 120) + "..." : desc;
+                plainDesc.length > 120 ? plainDesc.slice(0, 120) + "..." : plainDesc;
               return (
                 <article key={id} data-aos="slide-left" className="blog__item">
                   <div className="blog__item__image">
@@ -68,10 +73,7 @@ const SeeMoreBlogs = () => {
                       </span>
                     </div>
 
-                    <div
-                      className="blog__desc"
-                      dangerouslySetInnerHTML={{ __html: truncatedDesc }}
-                    />
+                    <div className="blog__desc">{truncatedDesc}</div>
 
                     <div className="blog__footer">
                       <Link

@@ -3,7 +3,7 @@
 }
 
 .faq__section > h2,
-.faq__section > h5 {
+.faq__section .section-eyebrow {
     text-align: center;
     color: var(--color-light);
 }
@@ -46,7 +46,7 @@
     padding: 1.2rem 1.5rem;
     font-size: 1rem;
     font-weight: 600;
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-poppins), sans-serif;
     cursor: pointer;
     text-align: left;
     border: none;

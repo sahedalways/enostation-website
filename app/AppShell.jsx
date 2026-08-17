@@ -12,85 +12,85 @@ import ScrollToTop from '@/Components/common/ScrollToTop';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 
 const AppShell = ({ children }) => {
-    useScrollAnimation();
+  useScrollAnimation();
 
-    const [showChat, setShowChat] = useState(false);
-    const [email, setEmail] = useState('');
-    const [isChatAllowed, setIsChatAllowed] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isChatAllowed, setIsChatAllowed] = useState(false);
 
-    const handleStartChat = () => {
-        if (!email || !email.includes('@')) {
-            alert('Valid email required');
-            return;
-        }
+  const handleStartChat = () => {
+    if (!email || !email.includes('@')) {
+      alert('Valid email required');
+      return;
+    }
 
-        localStorage.setItem('chat_email', email);
-        setIsChatAllowed(true);
-    };
+    localStorage.setItem('chat_email', email);
+    setIsChatAllowed(true);
+  };
 
-    const handleOpenChat = () => {
-        const savedEmail = localStorage.getItem('chat_email');
+  const handleOpenChat = () => {
+    const savedEmail = localStorage.getItem('chat_email');
 
-        if (savedEmail) {
-            setEmail(savedEmail);
-            setIsChatAllowed(true);
-        } else {
-            setIsChatAllowed(false);
-        }
+    if (savedEmail) {
+      setEmail(savedEmail);
+      setIsChatAllowed(true);
+    } else {
+      setIsChatAllowed(false);
+    }
 
-        setShowChat(true);
-    };
+    setShowChat(true);
+  };
 
-    return (
-        <>
-            <ScrollProgress />
-            <BackToTop />
+  return (
+    <>
+      <ScrollProgress />
+      <BackToTop />
 
-            <ChatLauncher onClick={handleOpenChat} />
+      <ChatLauncher onClick={handleOpenChat} />
 
-            <ScrollToTop />
+      <ScrollToTop />
 
-            <div className="app-shell">
-                <Navbar />
-                {children}
-                <Footer />
-            </div>
+      <div className="app-shell">
+        <Navbar />
+        <main id="main-content">{children}</main>
+        <Footer />
+      </div>
 
-            {showChat && !isChatAllowed && (
-                <div className="chat-gate-modal">
-                    <div className="chat-gate-header">
-                        <span>AI Assistant</span>
-                        <button
-                            onClick={() => setShowChat(false)}
-                            className="chat-gate-close"
-                            aria-label="Close Chat"
-                        >
-                            ✕
-                        </button>
-                    </div>
+      {showChat && !isChatAllowed && (
+        <div className="chat-gate-modal">
+          <div className="chat-gate-header">
+            <span>AI Assistant</span>
+            <button
+              onClick={() => setShowChat(false)}
+              className="chat-gate-close"
+              aria-label="Close Chat"
+            >
+              X
+            </button>
+          </div>
 
-                    <div className="chat-gate-body">
-                        <h3>Enter your email to start chat</h3>
-                        <input
-                            type="email"
-                            placeholder="your@email.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="chat-gate-input"
-                        />
-                        <button onClick={handleStartChat} className="chat-gate-submit">
-                            Start Chat
-                        </button>
-                    </div>
-                </div>
-            )}
-            {showChat && isChatAllowed && (
-                <div className="chat-container-wrap">
-                    <ChatContainer isOpen={showChat} setIsOpen={setShowChat} email={email} />
-                </div>
-            )}
-        </>
-    );
+          <div className="chat-gate-body">
+            <h3>Enter your email to start chat</h3>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="chat-gate-input"
+            />
+            <button onClick={handleStartChat} className="chat-gate-submit">
+              Start Chat
+            </button>
+          </div>
+        </div>
+      )}
+      {showChat && isChatAllowed && (
+        <div className="chat-container-wrap">
+          <ChatContainer isOpen={showChat} setIsOpen={setShowChat} email={email} />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default AppShell;

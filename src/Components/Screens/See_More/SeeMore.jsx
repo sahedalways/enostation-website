@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import './SeeMore.css';
 import { HashLoader } from 'react-spinners';
@@ -36,7 +37,7 @@ const SeeMore = () => {
     return (
         <>
             <section id="portfolio">
-                <h5>Our Recent Works</h5>
+                <p className="section-eyebrow">Our Recent Works</p>
                 <h2>Portfolio</h2>
 
                 {/* Dynamically render categories */}
@@ -56,7 +57,13 @@ const SeeMore = () => {
                                         className="portfolio__item"
                                     >
                                         <div className="portfolio__item__image">
-                                            <img src={image} alt={title} />
+                                            <Image
+                                                src={image}
+                                                alt={title}
+                                                fill
+                                                sizes="(max-width: 650px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                                style={{ objectFit: 'cover' }}
+                                            />
                                             <h3>{title}</h3>
                                             <Link href={`/project-details/${id}`}>
                                                 <h4 className="view__Details">View Details</h4>

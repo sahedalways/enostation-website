@@ -1,5 +1,3 @@
-import { createClient } from '@supabase/supabase-js';
-
 const supabaseUrl =
     process.env.NEXT_PUBLIC_SUPABASE_URL ||
     process.env.REACT_APP_SUPABASE_URL ||
@@ -41,6 +39,59 @@ const buildChain = () => {
     return promise;
 };
 
+// Lightweight PostgREST client. Replaces @supabase/supabase-js so the
+// heavy SDK (auth, realtime, storage, websocket) never ships to the client.
+// The `from().select().order()` chain below mirrors the old SDK contract
+// ({ data, error }) so callers such as usePortfolioProject are unchanged.
+const createPostgrestBuilder = (table) => {
+    let selectQuery = '*';
+    let orderClause = '';
+
+    const request = async () => {
+        const params = new URLSearchParams();
+        params.set('select', selectQuery);
+        if (orderClause) params.set('order', orderClause);
+
+        try {
+            const response = await fetch(
+                `${supabaseUrl}/rest/v1/${table}?${params.toString()}`,
+                {
+                    headers: {
+                        apikey: supabaseKey,
+                        Authorization: `Bearer ${supabaseKey}`,
+                    },
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+
+            const data = await response.json();
+            return { data, error: null };
+        } catch (error) {
+            return { data: null, error };
+        }
+    };
+
+    const builder = {
+        select: (columns = '*') => {
+            selectQuery = columns;
+            return builder;
+        },
+        order: (column, options = {}) => {
+            const direction = options.ascending === false ? 'desc' : 'asc';
+            orderClause = `${column}.${direction}`;
+            return builder;
+        },
+        then: (resolve, reject) => request().then(resolve, reject),
+        catch: (reject) => request().catch(reject),
+        finally: (handler) => request().finally(handler),
+    };
+
+    return builder;
+};
+
 export const supabase = isConfigured
-    ? createClient(supabaseUrl, supabaseKey)
+    ? { from: (table) => createPostgrestBuilder(table) }
     : { from: () => buildChain() };

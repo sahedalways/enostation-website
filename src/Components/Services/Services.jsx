@@ -93,7 +93,7 @@ const Services = () => {
     <>
       <section id="services">
         <ScrollReveal direction="none">
-          <h5>Our Capabilities</h5>
+          <p className="section-eyebrow">Our Capabilities</p>
           <h2>Digital Solutions & Services</h2>
           <p className="section-subtitle">End-to-end development services tailored to your business goals and technical needs.</p>
         </ScrollReveal>

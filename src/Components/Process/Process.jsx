@@ -17,7 +17,7 @@ const Process = () => {
     return (
         <section id="process" className="process__section section--alt">
             <ScrollReveal direction="none">
-                <h5>How We Build</h5>
+                <p className="section-eyebrow">How We Build</p>
                 <h2>Our 5-Step Agency Workflow</h2>
                 <p className="section-subtitle">Every project moves through the same build track — no skipped steps, no guesswork.</p>
             </ScrollReveal>
@@ -28,6 +28,7 @@ const Process = () => {
                     return (
                         <ScrollReveal key={step.title} delay={index * 0.1}>
                             <article className="process__step">
+                                <span className="process__border-arc" aria-hidden="true" />
                                 <span className="process__ghost-num">0{index + 1}</span>
                                 <div className="process__icon">
                                     <Icon />

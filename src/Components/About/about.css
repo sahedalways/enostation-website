@@ -7,7 +7,7 @@
     overflow-wrap: anywhere;
 }
 
-.about__section_heading h5,
+.about__section_heading .section-eyebrow,
 .about__section_heading h2 {
     position: static;
     left: auto;
@@ -169,7 +169,7 @@
     transition: var(--transition);
 }
 
-.pillar-card h5 {
+.pillar-card h3 {
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-white);

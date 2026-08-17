@@ -68,7 +68,7 @@ const Pricing = () => {
         <>
             <section id="pricing" className="pricing__section">
                 <ScrollReveal direction="none">
-                    <h5>Transparent Investment</h5>
+                    <p className="section-eyebrow">Transparent Investment</p>
                     <h2>Agency Engagement Models</h2>
                     <p className="section-subtitle">Flexible pricing designed to match your project scope and budget.</p>
                 </ScrollReveal>

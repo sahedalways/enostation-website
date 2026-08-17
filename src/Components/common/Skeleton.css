@@ -1,13 +1,23 @@
 .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-bg-variant);
+    border-radius: 0.5rem;
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
     background: linear-gradient(
         90deg,
-        var(--color-bg-variant) 25%,
-        var(--color-primary-variant) 50%,
-        var(--color-bg-variant) 75%
+        transparent,
+        var(--color-primary-variant),
+        transparent
     );
-    background-size: 200% 100%;
+    transform: translateX(-100%);
     animation: skeleton-shimmer 1.4s ease infinite;
-    border-radius: 0.5rem;
+    will-change: transform;
 }
 
 .skeleton-circle {
@@ -16,10 +26,10 @@
 
 @keyframes skeleton-shimmer {
     0% {
-        background-position: 200% 0;
+        transform: translateX(-100%);
     }
     100% {
-        background-position: -200% 0;
+        transform: translateX(100%);
     }
 }
 
@@ -27,5 +37,10 @@
     .skeleton {
         animation: none;
         background: var(--color-bg-variant);
+    }
+
+    .skeleton::after {
+        animation: none;
+        display: none;
     }
 }

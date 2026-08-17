@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "../common/ScrollReveal";
 
-const LOGO = "/assets/enostation.jpeg";
+const LOGO = "/assets/enostation-640.png";
 
 const About = () => {
   const agencyPillars = [
@@ -32,9 +32,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section--alt">
+    <section id="about">
       <ScrollReveal direction="none" className="about__section_heading">
-        <h5>Why Choose Us</h5>
+        <p className="section-eyebrow">Why Choose Us</p>
         <h2>Partner With Enostation</h2>
         <p className="section-subtitle">
           A dedicated team focused on delivering measurable results for your
@@ -44,19 +44,19 @@ const About = () => {
 
       <div className="container about__container">
         <ScrollReveal direction="scale" className="about__visual">
-            <div className="about__visual__image glass-card">
-              <div className="about__visual__glow" aria-hidden="true" />
-              <Image
-                src={LOGO}
-                alt="Enostation logo"
-                width={640}
-                height={320}
-                sizes="(max-width: 768px) 100vw, 40vw"
-              />
-              <div className="about__visual__overlay">
-                <p>Where Ideas Become Innovation</p>
-              </div>
+          <div className="about__visual__image glass-card">
+            <div className="about__visual__glow" aria-hidden="true" />
+            <Image
+              src={LOGO}
+              alt="Enostation logo"
+              width={640}
+              height={640}
+              sizes="(max-width: 768px) 100vw, 40vw"
+            />
+            <div className="about__visual__overlay">
+              <p>Where Ideas Become Innovation</p>
             </div>
+          </div>
         </ScrollReveal>
 
         <div className="about__content">
@@ -80,7 +80,7 @@ const About = () => {
               >
                 <div className="pillar-icon-box">{pillar.icon}</div>
                 <div>
-                  <h5>{pillar.title}</h5>
+                  <h3>{pillar.title}</h3>
                   <small>{pillar.desc}</small>
                 </div>
               </ScrollReveal>

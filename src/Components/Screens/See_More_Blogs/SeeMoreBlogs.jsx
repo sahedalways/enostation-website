@@ -1,5 +1,6 @@
 'use client';
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { FiArrowRight, FiClock, FiCalendar } from 'react-icons/fi';
 import { allBlogs } from "../../Blog/BlogData";
@@ -34,7 +35,15 @@ const SeeMoreBlogs = () => {
                 <article key={id} data-aos="slide-left" className="blog__item">
                   <div className="blog__item__image">
                     <div className="blog__img__wrapper">
-                      {image && <img src={image} alt={title} loading="lazy" />}
+                      {image && (
+                        <Image
+                          src={image}
+                          alt={title}
+                          fill
+                          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      )}
                       <div className="blog__img__overlay" />
                       {tag && <span className="blog__tag">{tag}</span>}
                       <span className="blog__date-badge">

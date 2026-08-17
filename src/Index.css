@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap");
-
 /*=========== Started All Agency CSS ==============*/
 * {
   margin: 0;
@@ -59,6 +57,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* Offset for fixed header */
 }
 
 html::-webkit-scrollbar {
@@ -81,7 +80,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 body {
-  font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+  font-family: var(--font-plus-jakarta), var(--font-poppins), sans-serif;
   background: var(--color-bg);
   color: var(--color-white);
   line-height: 1.7;
@@ -166,7 +165,7 @@ section > .scroll-reveal {
 
 /* Section headings are commonly wrapped by ScrollReveal. Keep the wrapper
    aligned with the section instead of allowing the heading to escape it. */
-section > .scroll-reveal > h5 {
+section > .scroll-reveal > .section-eyebrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,15 +180,15 @@ section > .scroll-reveal > h5 {
   position: relative;
 }
 
-section > .scroll-reveal > h5::before,
-section > .scroll-reveal > h5::after {
+section > .scroll-reveal > .section-eyebrow::before,
+section > .scroll-reveal > .section-eyebrow::after {
   content: "";
   width: 28px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-primary));
 }
 
-section > .scroll-reveal > h5::after {
+section > .scroll-reveal > .section-eyebrow::after {
   background: linear-gradient(90deg, var(--color-primary), transparent);
 }
 
@@ -231,13 +230,22 @@ section {
   z-index: 1;
 }
 
+/* Standalone pages (Services, Contact, Work, About, Reviews) start with a <section>.
+   Use padding-top instead of margin-top to clear the navbar!
+   Margin pushes the background down (creating a black gap).
+   Padding extends the background underneath the transparent navbar. */
+#main-content > section:first-child {
+  margin-top: 0;
+  padding-top: 9rem; /* 5rem for navbar + 4rem for normal section padding */
+}
+
 .section--alt {
   padding: 4rem 0;
   margin-top: var(--section-gap);
   background: radial-gradient(ellipse 70% 60% at 50% -10%, rgba(143, 215, 71, 0.07), transparent 60%), linear-gradient(180deg, #0d1119, #0a0d13);
 }
 
-section > h5 {
+section > .section-eyebrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,15 +260,15 @@ section > h5 {
   position: relative;
 }
 
-section > h5::before,
-section > h5::after {
+section > .section-eyebrow::before,
+section > .section-eyebrow::after {
   content: "";
   width: 28px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-primary));
 }
 
-section > h5::after {
+section > .section-eyebrow::after {
   background: linear-gradient(90deg, var(--color-primary), transparent);
 }
 
@@ -420,16 +428,6 @@ a:focus-visible {
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-text--animated {
-  background-size: 200% auto;
-  animation: gradientShift 6s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-}
-
 .glass-card {
   background: var(--glass-bg);
   border: var(--glass-border);
@@ -445,9 +443,42 @@ a:focus-visible {
   box-shadow: 0 28px 50px rgba(0, 0, 0, 0.45), 0 0 30px rgba(126, 200, 52, 0.12);
 }
 
-/* AOS polish */
+/* AOS replacement (IntersectionObserver hook) */
 [data-aos] {
   pointer-events: auto;
+}
+
+[data-aos].aos-init {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-aos="zoom-in-up"].aos-init {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+[data-aos="slide-left"].aos-init {
+  opacity: 0;
+  transform: translateX(48px);
+}
+
+[data-aos="fade-right"].aos-init {
+  opacity: 0;
+  transform: translateX(-48px);
+}
+
+[data-aos="fade-left"].aos-init {
+  opacity: 0;
+  transform: translateX(48px);
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: none;
 }
 
 /* ScrollReveal (IntersectionObserver) */
@@ -640,7 +671,7 @@ img {
   border: 1px solid rgba(126, 200, 52, 0.5);
   background: rgba(126, 200, 52, 0.15);
   color: var(--color-primary);
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-plus-jakarta), sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.4px;

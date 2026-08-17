@@ -26,6 +26,11 @@ const Header = () => {
   return (
     <header id="header" className="agency-hero-section">
       <div className="hero-mesh-bg" aria-hidden="true" />
+      <div aria-hidden="true" className="hero-mesh-bg-particles">
+        {Array.from({ length: 10 }).map((_, i) => (
+          <span key={i} />
+        ))}
+      </div>
       <div className="hero-grid-overlay" aria-hidden="true" />
 
       <div className="container agency-hero-container">
@@ -37,7 +42,7 @@ const Header = () => {
 
           <h1 className="agency-hero-title">
             Where Ideas <br />
-            <span className="gradient-text gradient-text--animated">
+            <span className="gradient-text">
               Become Innovation
             </span>
           </h1>
@@ -73,17 +78,25 @@ const Header = () => {
 
         <div className="hero-visual-wrapper">
           <div className="visual-card-glass">
-            <div className="visual-glow-ring" aria-hidden="true" />
+            {/* card-inner-clip: has overflow:hidden so shimmer stays inside
+                the card boundary, but badges live OUTSIDE this wrapper */}
+            <div className="card-inner-clip" aria-hidden="true">
+              <div className="visual-glow-ring" />
+              <div className="visual-glow-ring-2" />
+              <div className="visual-glow-ring-3" />
+            </div>
             <div className="visual-brand-circle">
               <Image
                 id="pic"
-                src="/assets/enostation.jpeg"
+                src="/assets/enostation-320.png"
                 alt="Enostation logo"
                 width={190}
                 height={190}
                 priority
+                sizes="190px"
               />
             </div>
+            {/* Badges are direct children of the outer card — never clipped */}
             <div className="floating-badge badge-top-right">
               <FiCpu className="badge-icon" />
               <div>
@@ -109,7 +122,7 @@ const Header = () => {
           <div className="container stats-banner-grid">
             {agencyStats.map((stat) => (
               <div key={stat.label} className="stat-banner-item">
-                <h3 className="stat-banner-number">{stat.number}</h3>
+                <p className="stat-banner-number">{stat.number}</p>
                 <p className="stat-banner-label">{stat.label}</p>
               </div>
             ))}

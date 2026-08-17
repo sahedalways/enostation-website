@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { CgArrowLeft } from 'react-icons/cg';
@@ -53,10 +54,13 @@ const BlogDetails = () => {
                                     <div className="blog__hero">
                                         <div className="blog__hero__image">
                                             {item.image ? (
-                                                <img
+                                                <Image
                                                     data-aos="zoom-in-up"
                                                     src={item.image}
                                                     alt={item.title}
+                                                    fill
+                                                    sizes="(max-width: 600px) 100vw, 900px"
+                                                    style={{ objectFit: 'cover' }}
                                                 />
                                             ) : item.video ? (
                                                 <div

@@ -30,6 +30,7 @@
 
 .portfolio__item__image {
     position: relative;
+    height: 200px;
     border-radius: var(--radius-md);
     overflow: hidden;
     margin-bottom: 1rem;
@@ -37,7 +38,7 @@
 
 .portfolio__item__image img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }

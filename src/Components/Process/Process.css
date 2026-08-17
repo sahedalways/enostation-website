@@ -1,9 +1,4 @@
 /* Agency Process Section Styling */
-@property --border-angle {
-    syntax: '<angle>';
-    inherits: false;
-    initial-value: 0deg;
-}
 
 .process__section {
     margin-top: var(--section-gap);
@@ -46,15 +41,29 @@
     pointer-events: none;
 }
 
-/* Bright arc that travels the card's perimeter */
-.process__step::after {
-    content: "";
+/* Bright arc that travels the card's perimeter (compositable rotate) */
+.process__step > .process__border-arc {
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1.4px;
+    overflow: hidden;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    filter: drop-shadow(0 0 5px var(--color-primary-glow));
+    opacity: 0.6;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(.2,.8,.2,1);
+}
+
+.process__border-arc::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
     background: conic-gradient(
-        from var(--border-angle),
+        from 0deg,
         transparent 0deg,
         transparent 250deg,
         rgba(126, 200, 52, 0.5) 278deg,
@@ -64,25 +73,18 @@
         rgba(126, 200, 52, 0.5) 340deg,
         transparent 360deg
     );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    filter: drop-shadow(0 0 5px var(--color-primary-glow));
-    opacity: 0.6;
     animation: travelBorder 6s linear infinite;
-    z-index: 0;
-    pointer-events: none;
-    transition: opacity 0.35s cubic-bezier(.2,.8,.2,1);
+    will-change: transform;
 }
 
-.process__step:nth-child(1)::after { animation-delay: -0s; }
-.process__step:nth-child(2)::after { animation-delay: -1.2s; }
-.process__step:nth-child(3)::after { animation-delay: -2.4s; }
-.process__step:nth-child(4)::after { animation-delay: -3.6s; }
-.process__step:nth-child(5)::after { animation-delay: -4.8s; }
+.process__step:nth-child(1) .process__border-arc::before { animation-delay: -0s; }
+.process__step:nth-child(2) .process__border-arc::before { animation-delay: -1.2s; }
+.process__step:nth-child(3) .process__border-arc::before { animation-delay: -2.4s; }
+.process__step:nth-child(4) .process__border-arc::before { animation-delay: -3.6s; }
+.process__step:nth-child(5) .process__border-arc::before { animation-delay: -4.8s; }
 
 @keyframes travelBorder {
-    to { --border-angle: 360deg; }
+    to { transform: rotate(360deg); }
 }
 
 .process__step > * {
@@ -95,7 +97,7 @@
     background: rgba(18, 24, 38, 0.85);
 }
 
-.process__step:hover::after {
+.process__step:hover > .process__border-arc {
     opacity: 1;
     filter: drop-shadow(0 0 8px var(--color-primary-glow));
 }
@@ -105,7 +107,7 @@
     position: absolute;
     top: 0.6rem;
     right: 0.8rem;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-plus-jakarta), sans-serif;
     font-size: 4.4rem;
     font-weight: 700;
     line-height: 1;
@@ -218,16 +220,19 @@
         transition: none;
     }
 
-    .process__step::after {
-        animation: none;
+    .process__border-arc {
         opacity: 0;
+    }
+
+    .process__border-arc::before {
+        animation: none;
     }
 
     .process__step:hover {
         transform: none;
     }
 
-    .process__step:hover::after {
+    .process__step:hover .process__border-arc {
         opacity: 0;
     }
 }

@@ -5,7 +5,7 @@ import Link from "next/link";
 import ScrollReveal from "../common/ScrollReveal";
 import "./footer.css";
 
-const LOGO = "/assets/enostation.jpeg";
+const LOGO = "/assets/enostation-80.png";
 
 const Footer = () => {
   return (
@@ -36,6 +36,7 @@ const Footer = () => {
                 alt="Enostation logo"
                 width={44}
                 height={44}
+                sizes="44px"
               />
               <div className="agency-footer-title">
                 <span>ENOSTATION</span>
@@ -46,7 +47,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-links-col">
-            <h4>Navigation</h4>
+            <h3>Navigation</h3>
             <ul className="permalinks">
               <li>
                 <Link href="/">Home</Link>
@@ -79,7 +80,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-services-col">
-            <h4>Services</h4>
+            <h3>Services</h3>
             <ul className="permalinks">
               <li>
                 <Link href="/services">Web & SaaS Development</Link>
@@ -100,7 +101,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-social-col">
-            <h4>Connect With Us</h4>
+            <h3>Connect With Us</h3>
             <div className="footer__socials">
               <a
                 href="https://www.linkedin.com/in/sahedstar"

@@ -114,7 +114,11 @@ const ReviewModal = ({ open, onClose }) => {
                 <p className="review-modal__subtitle">{REVIEW_FORM.subtitle}</p>
 
                 <form onSubmit={handleSubmit} noValidate>
+                    <label className="input-label" htmlFor="review-name">
+                        Name
+                    </label>
                     <input
+                        id="review-name"
                         type="text"
                         name="name"
                         placeholder={REVIEW_FORM.name}
@@ -125,7 +129,11 @@ const ReviewModal = ({ open, onClose }) => {
                     />
                     {errors.name && <small className="form-error-msg">{errors.name}</small>}
 
+                    <label className="input-label" htmlFor="review-email">
+                        Email
+                    </label>
                     <input
+                        id="review-email"
                         type="email"
                         name="email"
                         placeholder={REVIEW_FORM.email}
@@ -166,7 +174,11 @@ const ReviewModal = ({ open, onClose }) => {
                         <small className="form-error-msg">{errors.rating}</small>
                     )}
 
+                    <label className="input-label" htmlFor="review-text">
+                        Review
+                    </label>
                     <textarea
+                        id="review-text"
                         name="review"
                         rows="5"
                         cols="10"

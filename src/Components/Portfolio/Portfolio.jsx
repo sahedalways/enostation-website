@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import './portfolio.css';
 import { usePortfolioProject } from '../../hooks/usePortfolioProject';
@@ -37,7 +38,7 @@ const Portfolio = () => {
     return (
         <section id="portfolio">
             <ScrollReveal direction="none">
-                <h5>Case Studies & Client Work</h5>
+                <p className="section-eyebrow">Case Studies & Client Work</p>
                 <h2>Featured Client Projects</h2>
                 <p className="section-subtitle">Real results from real projects — see what we've built for businesses like yours.</p>
             </ScrollReveal>
@@ -76,7 +77,13 @@ const Portfolio = () => {
                         <ScrollReveal key={id} delay={Math.min(index * 0.06, 0.36)}>
                             <article className="portfolio__item glass-card">
                                 <div className="portfolio-card-media">
-                                    <img src={image} alt={title} className="portfolio-img" />
+                                    <Image
+                                        src={image}
+                                        alt={title}
+                                        fill
+                                        sizes="(max-width: 650px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        className="portfolio-img"
+                                    />
                                     <div className="portfolio-overlay">
                                         <Link href={`/project-details/${id}`} className="view-case-study-btn">
                                             Case Study <FiArrowUpRight />

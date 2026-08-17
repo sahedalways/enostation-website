@@ -17,6 +17,14 @@ const BUDGET_OPTIONS = [
   "$15,000+",
 ];
 
+const INPUT_LABELS = {
+  name: "Your Name or Company",
+  email: "Work Email",
+  phone: "Phone / WhatsApp Number",
+  projectType: "Project Type",
+  message: "Tell us about your project goals, timelines, or requirements",
+};
+
 const Contact = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("success");
@@ -101,10 +109,10 @@ const Contact = () => {
   return (
     <section id="contact">
       <ScrollReveal direction="none">
-        <h5>Let's Build Something Great</h5>
+        <p className="section-eyebrow">Let's Build Something Great</p>
         <h2>Start Your Agency Project</h2>
         <p className="section-subtitle">
-          Get in touch to discuss your project — we typically respond within 24
+          Get in touch to discuss your project - we typically respond within 24
           hours.
         </p>
       </ScrollReveal>
@@ -122,14 +130,14 @@ const Contact = () => {
           <article className="contact__option glass-card">
             <AiOutlineMail className="contact__option__icon" />
             <h4>Email Us</h4>
-            <h5>hello.enostation@gmail.com</h5>
+            <p className="contact__detail">hello.enostation@gmail.com</p>
             <a href="mailto:hello.enostation@gmail.com">Send Direct Email</a>
           </article>
 
           <article className="contact__option glass-card">
             <BsWhatsapp className="contact__option__icon" />
             <h4>WhatsApp Inquiry</h4>
-            <h5>+8801616 516753</h5>
+            <p className="contact__detail">+8801616 516753</p>
             <a
               href="https://api.whatsapp.com/send?phone=8809638616438"
               rel="noreferrer"
@@ -142,7 +150,7 @@ const Contact = () => {
           <article className="contact__option glass-card">
             <RiMessengerLine className="contact__option__icon" />
             <h4>Facebook Messenger</h4>
-            <h5>Enostation</h5>
+            <p className="contact__detail">Enostation</p>
             <a
               href="https://www.m.me/sahedstar"
               rel="noreferrer"
@@ -166,10 +174,10 @@ const Contact = () => {
             </p>
 
             <div className="budget-selection-wrapper">
-              <label className="input-label">
+              <p className="input-label" id="budget-label">
                 <FiDollarSign /> Estimated Project Budget
-              </label>
-              <div className="budget-pills-grid">
+              </p>
+              <div className="budget-pills-grid" aria-labelledby="budget-label">
                 {BUDGET_OPTIONS.map((b) => (
                   <button
                     key={b}
@@ -184,8 +192,12 @@ const Contact = () => {
             </div>
 
             <div className="form-grid-row">
-              <div>
+              <div className="form-field">
+                <label className="input-label" htmlFor="contact-name">
+                  {INPUT_LABELS.name}
+                </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   placeholder="Your Name or Company *"
@@ -199,8 +211,12 @@ const Contact = () => {
                 )}
               </div>
 
-              <div>
+              <div className="form-field">
+                <label className="input-label" htmlFor="contact-email">
+                  {INPUT_LABELS.email}
+                </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   placeholder="Work Email *"
@@ -216,46 +232,64 @@ const Contact = () => {
             </div>
 
             <div className="form-grid-row">
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone / WhatsApp Number (Optional)"
-                value={formValues.phone}
-                onChange={handleChange}
-              />
+              <div className="form-field">
+                <label className="input-label" htmlFor="contact-phone">
+                  {INPUT_LABELS.phone}
+                </label>
+                <input
+                  id="contact-phone"
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone / WhatsApp Number (Optional)"
+                  value={formValues.phone}
+                  onChange={handleChange}
+                />
+              </div>
 
-              <select
-                name="projectType"
-                value={formValues.projectType}
-                onChange={handleChange}
-              >
-                <option value="Web & SaaS Application">
-                  Web & SaaS Application
-                </option>
-                <option value="AI Automation & Custom LLMs">
-                  AI Automation & Custom LLMs
-                </option>
-                <option value="Mobile App Development">
-                  Mobile App Development
-                </option>
-                <option value="UI/UX & Product Design">
-                  UI/UX & Product Design
-                </option>
-                <option value="Cloud DevOps & Maintenance">
-                  Cloud DevOps & Maintenance
-                </option>
-              </select>
+              <div className="form-field">
+                <label className="input-label" htmlFor="projectType">
+                  {INPUT_LABELS.projectType}
+                </label>
+                <select
+                  id="projectType"
+                  name="projectType"
+                  value={formValues.projectType}
+                  onChange={handleChange}
+                >
+                  <option value="Web & SaaS Application">
+                    Web & SaaS Application
+                  </option>
+                  <option value="AI Automation & Custom LLMs">
+                    AI Automation & Custom LLMs
+                  </option>
+                  <option value="Mobile App Development">
+                    Mobile App Development
+                  </option>
+                  <option value="UI/UX & Product Design">
+                    UI/UX & Product Design
+                  </option>
+                  <option value="Cloud DevOps & Maintenance">
+                    Cloud DevOps & Maintenance
+                  </option>
+                </select>
+              </div>
             </div>
 
-            <textarea
-              name="message"
-              rows="6"
-              placeholder="Tell us about your project goals, timelines, or requirements... *"
-              value={formValues.message}
-              onChange={handleChange}
-              className={errors.message ? "form-error" : ""}
-              required
-            ></textarea>
+            <div className="form-field form-field--full">
+              <label className="input-label" htmlFor="contact-message">
+                {INPUT_LABELS.message}
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="6"
+                placeholder="Tell us about your project goals, timelines, or requirements... *"
+                value={formValues.message}
+                onChange={handleChange}
+                className={errors.message ? "form-error" : ""}
+                required
+              ></textarea>
+            </div>
             {errors.message && (
               <small className="form-error-msg">{errors.message}</small>
             )}

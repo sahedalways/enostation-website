@@ -2,6 +2,7 @@ import '../src/Index.css';
 
 import Providers from './providers';
 import AppShell from './AppShell';
+import { plusJakartaSans, poppins } from '../src/utils/fonts';
 import {
     SITE_URL,
     SITE_NAME,
@@ -59,7 +60,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body>
+            <body className={`${plusJakartaSans.variable} ${poppins.variable}`}>
                 <Providers>
                     <AppShell>{children}</AppShell>
                 </Providers>

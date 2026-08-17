@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { BsFileCodeFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { useParams } from 'next/navigation';
@@ -68,10 +69,13 @@ const ProjectDetails = () => {
                                 <div className="container project__container">
                                     <div className="project__sahed__wrapper">
                                         <div className="project__img__wrapper">
-                                            <img
+                                            <Image
                                                 data-aos="zoom-in-up"
                                                 src={item.image}
                                                 alt={item.title}
+                                                fill
+                                                sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 43vw"
+                                                style={{ objectFit: 'cover' }}
                                             />
                                         </div>
                                     </div>
@@ -86,13 +90,13 @@ const ProjectDetails = () => {
                                                 className="project__card"
                                             >
                                                 <CgProfile className="project__icon" />
-                                                <h5>Author Name</h5>
+                                                <h3>Author Name</h3>
                                                 <small>{item.authorName}</small>
                                             </article>
 
                                             <article data-aos="fade-left" className="project__card">
                                                 <BsFileCodeFill className="project__icon" />
-                                                <h5>Used Technologies</h5>
+                                                <h3>Used Technologies</h3>
                                                 <small>{item.use}</small>
                                             </article>
                                         </div>
@@ -125,7 +129,7 @@ const ProjectDetails = () => {
                                 CASE STUDY / DELIVERY PROCESS
                             ========================= */}
                             <section id="case-study" className="case-study">
-                                <h5>A behind-the-scenes look at how this project was built.</h5>
+                                <p className="section-eyebrow">A behind-the-scenes look at how this project was built.</p>
                                 <h2>Project Delivery Process</h2>
 
                                 <div className="container case-study__container">

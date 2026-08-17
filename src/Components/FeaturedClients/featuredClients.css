@@ -58,7 +58,7 @@
 .client-logo {
     flex: 0 0 auto;
     white-space: nowrap;
-    font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+    font-family: var(--font-plus-jakarta), var(--font-poppins), sans-serif;
     font-size: clamp(0.9rem, 1.6vw, 1.3rem);
     font-weight: 700;
     color: var(--color-light);

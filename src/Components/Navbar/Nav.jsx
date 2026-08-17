@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import "./nav.css";
 import {
   AiOutlineHome,
@@ -13,7 +14,7 @@ import { BsTag } from "react-icons/bs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const LOGO = "/assets/enostation.jpeg";
+const LOGO = "/assets/enostation-80.png";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = React.useState("/");
@@ -41,7 +42,14 @@ const Nav = () => {
             className="agency-logo-brand"
             onClick={() => setActiveNav("/")}
           >
-            <img src={LOGO} alt="Enostation Logo" className="agency-logo-img" />
+            <Image
+              src={LOGO}
+              alt="Enostation logo"
+              width={80}
+              height={80}
+              className="agency-logo-img"
+              sizes="80px"
+            />
             <div className="agency-brand-text">
               <span className="agency-name">ENOSTATION</span>
               <span className="agency-tag"></span>

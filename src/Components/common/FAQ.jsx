@@ -37,7 +37,7 @@ const FAQ = () => {
     return (
         <section id="faq" className="faq__section">
             <ScrollReveal direction="none">
-                <h5>Common Questions</h5>
+                <p className="section-eyebrow">Common Questions</p>
                 <h2>Frequently Asked Questions</h2>
                 <p className="section-subtitle">Quick answers to common questions about working with us.</p>
             </ScrollReveal>

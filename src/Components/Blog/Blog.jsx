@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { FiArrowRight, FiClock, FiCalendar } from 'react-icons/fi';
 import { allBlogs } from "./BlogData";
@@ -20,7 +21,7 @@ const Blog = () => {
   return (
     <section id="blog">
       <ScrollReveal direction="none">
-        <h5>Recent Blogs</h5>
+        <p className="section-eyebrow">Recent Blogs</p>
         <h2>Blog</h2>
         <p className="section-subtitle">Insights, tutorials, and updates from our development team.</p>
       </ScrollReveal>
@@ -32,13 +33,21 @@ const Blog = () => {
           .slice(0, 3)
           .map(({ id, image, title, desc, author, date, tag, readTime }, index) => {
             const truncatedDesc =
-              desc.length > 120 ? desc.slice(0, 120) + "..." : desc;
+              desc && desc.length > 120 ? desc.slice(0, 120) + "..." : (desc || "");
             return (
               <ScrollReveal key={id} delay={index * 0.08} direction="left">
                 <article className="blog__item">
                   <div className="blog__item__image">
                     <div className="blog__img__wrapper">
-                      {image && <img src={image} alt={title} loading="lazy" />}
+                      {image && (
+                        <Image
+                          src={image}
+                          alt={title}
+                          fill
+                          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      )}
                       <div className="blog__img__overlay" />
                       {tag && <span className="blog__tag">{tag}</span>}
                       <span className="blog__date-badge">
@@ -86,7 +95,7 @@ const Blog = () => {
 
       <ScrollReveal delay={0.2}>
         <div className="seeMore__btn">
-          <Link href="/blogs" className="btn" rel="noreferrer" target="_blank">
+          <Link href="/blogs" className="btn" rel="noreferrer" target="_blank" aria-label="See more blog posts">
             See More
           </Link>
         </div>

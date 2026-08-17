@@ -1,6 +1,6 @@
 /* Agency Pricing Styling */
 .pricing__section {
-    margin-top: 8rem;
+    /* Top spacing handled globally by main > section:first-child in Index.css */
 }
 
 .pricing__container {

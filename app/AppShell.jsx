@@ -1,15 +1,19 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 
 import Navbar from '@/Components/Navbar/Nav';
 import Footer from '@/Components/Footer/Footer';
 import BackToTop from '@/Components/common/BackToTop';
 import ChatLauncher from '@/Components/common/ChatLauncher';
-import ChatContainer from '@/Components/common/ChatContainer';
 import ScrollProgress from '@/Components/common/ScrollProgress';
 import ScrollToTop from '@/Components/common/ScrollToTop';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
+
+const ChatContainer = dynamic(() => import('@/Components/common/ChatContainer'), {
+    ssr: false,
+});
 
 const AppShell = ({ children }) => {
   useScrollAnimation();

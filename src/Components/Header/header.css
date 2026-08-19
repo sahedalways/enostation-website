@@ -223,6 +223,13 @@
   justify-content: center;
 }
 
+.hero-visual-wrapper *,
+.hero-visual-wrapper *::before,
+.hero-visual-wrapper *::after,
+.hero-visual-wrapper {
+  animation: none !important;
+}
+
 .visual-card-glass {
   position: relative;
   width: 100%;

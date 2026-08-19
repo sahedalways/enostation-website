@@ -1,12 +1,14 @@
+import dynamic from "next/dynamic";
 import JsonLd from "../../common/JsonLd";
 import Header from "../../Header/Header";
 import About from "../../About/About";
-import Experience from "../../Experience/Experience";
 import Services from "../../Services/Services";
-import Portfolio from "../../Portfolio/Portfolio";
-import Blog from "../../Blog/Blog";
-import Testimonial from "../../Testimonial/Testimonial";
-import Contact from "../../Contact/Contact";
+
+const Experience = dynamic(() => import("../../Experience/Experience"));
+const Portfolio = dynamic(() => import("../../Portfolio/Portfolio"));
+const Blog = dynamic(() => import("../../Blog/Blog"));
+const Testimonial = dynamic(() => import("../../Testimonial/Testimonial"));
+const Contact = dynamic(() => import("../../Contact/Contact"));
 
 const Home = () => {
   const organizationJsonLd = {
